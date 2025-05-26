@@ -65,9 +65,6 @@ tar -C /usr/local -xzf go${GO_VERSION}.linux-arm64.tar.gz
 ln -s /usr/local/go/bin/go /usr/bin/go
 rm go${GO_VERSION}.linux-arm64.tar.gz
 
-echo "LS"
-ls -l /usr/bin/gcc-13 /usr/bin/g++-13 /usr/bin/python3
-
 update-alternatives --install /usr/bin/gcc gcc /usr/bin/aarch64-linux-gnu-gcc-13 13
 update-alternatives --install /usr/bin/g++ g++ /usr/bin/aarch64-linux-gnu-g++-13 13
 # update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3 12
