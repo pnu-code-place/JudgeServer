@@ -48,11 +48,10 @@ rm -f /etc/apt/apt.conf.d/docker-clean
 echo 'Binary::apt::APT::Keep-Downloaded-Packages "1";' > /etc/apt/apt.conf.d/keep-cache
 echo 'APT::Install-Recommends "0";' > /etc/apt/apt.conf.d/no-recommends
 echo 'APT::AutoRemove::RecommendsImportant "0";' >> /etc/apt/apt.conf.d/no-recommends
-needed="python3.12-minimal \
-    python3.12-venv \
-    libpython3.12-stdlib \
-    libpython3.12-dev \
-    golang-1.22-go \
+needed="python3 \
+    python3-venv \
+    python3-dev \
+    golang-go \
     temurin-21-jdk \
     gcc-13 \
     g++-13 \
@@ -65,7 +64,7 @@ curl -fsSL https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --
 cat > /etc/apt/sources.list.d/adoptium.sources <<EOF
 Types: deb
 URIs: https://packages.adoptium.net/artifactory/deb
-Suites: bookworm
+Suites: trixie
 Components: main
 Signed-By: /etc/apt/keyrings/adoptium.gpg
 EOF
@@ -81,8 +80,7 @@ apt-get update
 apt-get install -y $needed
 update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 13
 update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 13
-update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 12
-update-alternatives --install /usr/bin/go go /usr/lib/go-1.22/bin/go 22
+
 rm -rf /usr/lib/jvm/temurin-21-jdk-*/jmods
 rm -rf /usr/lib/jvm/temurin-21-jdk-*/lib/src.zip
 apt-mark auto '.*' > /dev/null
