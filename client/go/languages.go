@@ -67,7 +67,7 @@ var CPPLangConfig = &LangConfig{
 		MaxCpuTime:     3000,
 		MaxRealTime:    5000,
 		MaxMemory:      128 * 1024 * 1024,
-		CompileCommand: "/usr/bin/g++ -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c++11 {src_path} -lm -o {exe_path}",
+		CompileCommand: "/usr/bin/g++ -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c++17 {src_path} -lm -o {exe_path}",
 	},
 	RunConfig: RunConfig{
 		Command:     "{exe_path}",
