@@ -22,7 +22,7 @@ if [ -z "$WORKER_NUM" ]; then
             CPU_PERIOD=$(echo "$CPU_MAX" | cut -d' ' -f2)
 
             if [ -n "$CPU_QUOTA" ] && [ -n "$CPU_PERIOD" ] && [ "$CPU_PERIOD" -gt 0 ]; then
-                WORKER_NUM=$((CPU_QUOTA / CPU_PERIOD))
+                export WORKER_NUM=$((CPU_QUOTA / CPU_PERIOD))
             fi
         fi
     # cgroup v1
@@ -31,7 +31,7 @@ if [ -z "$WORKER_NUM" ]; then
         CPU_PERIOD=$(cat /sys/fs/cgroup/cpu/cpu.cfs_period_us)
 
         if [ "$CPU_QUOTA" -gt 0 ] && [ "$CPU_PERIOD" -gt 0 ]; then
-            WORKER_NUM=$((CPU_QUOTA / CPU_PERIOD))
+            export WORKER_NUM=$((CPU_QUOTA / CPU_PERIOD))
         fi
     fi
 
